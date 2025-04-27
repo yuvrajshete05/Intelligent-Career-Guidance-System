@@ -132,7 +132,6 @@ function App() {
           <div className="logo">Career.ly</div>
           <ul className="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
             <li className="dropdown">
               <a href="#">Services ▼</a>
               <div className="dropdown-content">
@@ -141,6 +140,7 @@ function App() {
                 <a href="#knowledge-network">Knowledge Network</a>
               </div>
             </li>
+            <li><a href="#about">About Us</a></li>
             <li><a href="#contact">Contact Us</a></li>
           </ul>
         </nav>
@@ -155,8 +155,8 @@ function App() {
       </section>
 
       <section id="about">
-        <h2>About Us</h2>
-        <p>We are an intelligent career guidance system helping students find the best career path after engineering.</p>
+        <h2 className="yuvraj">About Us</h2>
+        <p className="yuvraj">We are an intelligent career guidance system helping students find the best career path after engineering.</p>
         <AdventurePage />
       </section>
 
