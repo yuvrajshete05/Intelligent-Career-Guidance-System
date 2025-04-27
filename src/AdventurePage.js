@@ -3,13 +3,11 @@ import "./App.css";
 import Welcome from './Welcome.jsx'; // Import the Welcome component
 
 function AdventurePage({ scrollToSection }) {
-  // === STATE ===
   const [personality, setPersonality] = useState('');
   const [skills, setSkills] = useState([]);
   const [interests, setInterests] = useState([]);
   const [suggestedCareers, setSuggestedCareers] = useState([]);
 
-  // === HANDLERS ===
   const handleSkillClick = (skill) => {
     setSkills((prevSkills) =>
       prevSkills.includes(skill) ? prevSkills.filter((s) => s !== skill) : [...prevSkills, skill]
@@ -121,11 +119,10 @@ function AdventurePage({ scrollToSection }) {
 }
 
 function App() {
-  // === STATE TO HANDLE PAGE DISPLAY ===
   const [showWelcome, setShowWelcome] = useState(false);
   const [currentPage, setCurrentPage] = useState('home'); // New state to track the current page
 
-  // === SCROLL FUNCTION ===
+  // Scroll function to scroll to specific section
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -133,16 +130,23 @@ function App() {
     }
   };
 
-  // Function to handle the button click
+  // Handle the "Get Started" button click
   const handleGetStarted = () => {
     setShowWelcome(true); // Show the Welcome page on button click
     setCurrentPage('welcome'); // Update current page to 'welcome'
   };
 
-  // Function to handle the "Home" button click
+  // Handle the "Home" button click
   const handleHomeClick = () => {
     setShowWelcome(false); // Show the home page
     setCurrentPage('home'); // Update current page to 'home'
+    window.scrollTo(0, 0); // Scroll to top of the page
+  };
+
+  // Handle form submission
+  const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent page reload
+    alert("Your message has been sent successfully!");
   };
 
   return (
@@ -151,7 +155,7 @@ function App() {
         <nav>
           <div className="logo">Career.ly</div>
           <ul className="nav-links">
-            <li><a href="#" onClick={handleHomeClick}>Home</a></li> {/* Update home button */}
+            <li><a href="#" onClick={(e) => { e.preventDefault(); handleHomeClick(); }}>Home</a></li> 
             <li className="dropdown">
               <a href="#">Services ▼</a>
               <div className="dropdown-content">
@@ -160,8 +164,8 @@ function App() {
                 <a href="#knowledge-network">Knowledge Network</a>
               </div>
             </li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About Us</a></li>
+            <li><a href="#" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact Us</a></li>
           </ul>
         </nav>
       </header>
@@ -186,56 +190,66 @@ function App() {
         <Welcome /> // Show the Welcome page when 'welcome' is the current page
       ) : null}
 
+      <section className="cont" id="contact" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: 'cream', padding: '40px 20px' }}>
+        <div className="cont-form-container" style={{ width: '100%', maxWidth: '700px', backgroundColor: 'white', padding: '40px', borderRadius: '10px', boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)', textAlign: 'left' }}>
+          <form id="contact-form" method="post" onSubmit={handleFormSubmit}>
+            <div className="form-group" id="name-form" style={{ marginBottom: '25px' }}>
+              <label htmlFor="name" style={{ display: 'block', fontSize: '1rem', fontWeight: '500', color: '#333', marginBottom: '8px', letterSpacing: '0.5px' }}>Your Name*</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+                style={{ width: '100%', padding: '14px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '6px', boxSizing: 'border-box', backgroundColor: '#f9f9f9', color: '#333', transition: 'border-color 0.3s ease, background-color 0.3s ease' }}
+              />
+            </div>
 
-<section className="cont" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: 'cream', padding: '40px 20px' }}>
-  {/* <header className="cont-header" style={{ textAlign: 'center', marginBottom: '40px' }}>
-    <h1 className="s" style={{ fontSize: '2.5rem', fontWeight: '600', color: '#333', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '20px', fontFamily: 'Helvetica, sans-serif' }}>Contact Us</h1>
-  </header> */}
+            <div className="form-group" id="email-form" style={{ marginBottom: '25px' }}>
+              <label htmlFor="email" style={{ display: 'block', fontSize: '1rem', fontWeight: '500', color: '#333', marginBottom: '8px', letterSpacing: '0.5px' }}>Your E-mail*</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                style={{ width: '100%', padding: '14px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '6px', boxSizing: 'border-box', backgroundColor: '#f9f9f9', color: '#333', transition: 'border-color 0.3s ease, background-color 0.3s ease' }}
+              />
+            </div>
 
-  <div className="cont-form-container" style={{ width: '100%', maxWidth: '700px', backgroundColor: 'white', padding: '40px', borderRadius: '10px', boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)', textAlign: 'left' }}>
-    <form id="contact-form" method="post">
-      <div className="form-group" id="name-form" style={{ marginBottom: '25px' }}>
-        <label htmlFor="name" style={{ display: 'block', fontSize: '1rem', fontWeight: '500', color: '#333', marginBottom: '8px', letterSpacing: '0.5px' }}>Your Name*</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Enter your name"
-          required
-          style={{ width: '100%', padding: '14px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '6px', boxSizing: 'border-box', backgroundColor: '#f9f9f9', color: '#333', transition: 'border-color 0.3s ease, background-color 0.3s ease' }}
-        />
-      </div>
+            <div className="form-group" id="message-form" style={{ marginBottom: '25px' }}>
+              <label htmlFor="message" style={{ display: 'block', fontSize: '1rem', fontWeight: '500', color: '#333', marginBottom: '8px', letterSpacing: '0.5px' }}>Your Message*</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Enter your message"
+                required
+                style={{ width: '100%', padding: '14px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '6px', boxSizing: 'border-box', backgroundColor: '#f9f9f9', color: '#333', transition: 'border-color 0.3s ease, background-color 0.3s ease' }}
+              ></textarea>
+            </div>
 
-      <div className="form-group" id="email-form" style={{ marginBottom: '25px' }}>
-        <label htmlFor="email" style={{ display: 'block', fontSize: '1rem', fontWeight: '500', color: '#333', marginBottom: '8px', letterSpacing: '0.5px' }}>Your E-mail*</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-          style={{ width: '100%', padding: '14px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '6px', boxSizing: 'border-box', backgroundColor: '#f9f9f9', color: '#333', transition: 'border-color 0.3s ease, background-color 0.3s ease' }}
-        />
-      </div>
-
-      <div className="form-group" id="message-form" style={{ marginBottom: '25px' }}>
-        <label htmlFor="message" style={{ display: 'block', fontSize: '1rem', fontWeight: '500', color: '#333', marginBottom: '8px', letterSpacing: '0.5px' }}>Your Message*</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Write your message here"
-          rows="5"
-          required
-          style={{ width: '100%', padding: '14px', fontSize: '1rem', border: '1px solid #ccc', borderRadius: '6px', boxSizing: 'border-box', backgroundColor: '#f9f9f9', color: '#333', transition: 'border-color 0.3s ease, background-color 0.3s ease', resize: 'vertical', minHeight: '120px' }}
-        />
-      </div>
-
-      <button type="submit" className="submit-button" style={{ display: 'inline-block', width: '100%', padding: '15px', fontSize: '1.1rem', fontWeight: '600', color: 'white', backgroundColor: '#007bff', border: 'none', borderRadius: '6px', cursor: 'pointer', transition: 'background-color 0.3s ease', letterSpacing: '1px', textTransform: 'uppercase' }}>Send Your Message!</button>
-    </form>
-  </div>
-</section>
-
-
+            <div className="form-group">
+              <button
+                type="submit"
+                style={{
+                  width: '100%',
+                  padding: '14px',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  backgroundColor: '#007BFF',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s ease'
+                }}
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
     </div>
   );
 }
