@@ -68,7 +68,8 @@ function AdventurePage({ scrollToSection }) {
         <div className="text-block">
           <h2>Mission Statement</h2>
           <p>
-            At Career Guidance, our mission is to empower students and professionals to make informed career decisions by providing personalized career assessments and insights. We understand that finding the right career path can be overwhelming, especially after completing an engineering degree, and that’s why we’ve created an intelligent platform that helps you discover careers aligned with your personality, skills, and interests.
+          "Our mission is to bridge the gap between education and industry by providing personalized, AI-driven career guidance to every learner.
+          We aim to empower students and professionals with accurate, unbiased, and insightful career recommendations — helping them unlock their true potential and achieve lasting success."
           </p>
         </div>
         <div className="image-block">
@@ -84,8 +85,7 @@ function AdventurePage({ scrollToSection }) {
         <div className="text-block">
           <h2>How It Works</h2>
           <p>
-            At Career Guidance, we make career decision-making easy, insightful, and personalized. Our platform is designed to help you discover your perfect career path by understanding your personality, skills, and passions. Here’s how our simple, yet powerful process works:
-          </p>
+          "Input your skills, education, and interests — our system predicts the best career path for you, personalized and accurate. Modify anytime until you find your perfect fit!"</p>
         </div>
         <div className="image-block">
           <img
@@ -182,7 +182,9 @@ function App() {
 
           <section id="about">
             <h2 className="yuvraj">About Us</h2>
-            <p className="yuvraj">We are an intelligent career guidance system helping students find the best career path after engineering.</p>
+            <p className="yuvraj">Welcome to the Intelligent Career Counsellor System!
+We have combined the power of Machine Learning and Deep Learning technologies such as Feedforward Neural Networks (FNN) and XGBoost to make career counseling smarter, faster, and unbiased.
+Start your journey with us and discover your true career path today! 🚀</p>
             <AdventurePage scrollToSection={scrollToSection} />
           </section>
         </>
