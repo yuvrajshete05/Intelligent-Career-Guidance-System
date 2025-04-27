@@ -148,8 +148,8 @@ function App() {
 
       <section id="home" className="hero">
         <div className="hero-content">
-          <h1>Intelligent Career Guidance System</h1>
-          <p className="pp">Discover yourself <br /> Take the test to find the perfect role for you after Engineering</p>
+          <h1>Intelligent Career Counsellor</h1>
+          <p className="pp">Discover yourself <br /> Take the test to find the perfect role for you after Graduation</p>
           <button className="get-started-yuvraj">Get Started!</button>
         </div>
       </section>
