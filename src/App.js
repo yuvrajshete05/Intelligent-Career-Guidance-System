@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import './Login.css';
 import AdventurePage from './AdventurePage';
+import Welcome from './Welcome';  // Assuming Welcome is the page you need after login
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,14 +13,13 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-          <Route path="/adventure" element={isLoggedIn ? <AdventurePage /> : <Login onLoginSuccess={handleLoginSuccess} />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      <Routes>  {/* Use Routes to define routing */}
+        <Route path="/" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/adventure" element={isLoggedIn ? <AdventurePage /> : <Login onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/welcome" element={<Welcome />} /> {/* Add route to Welcome */}
+      </Routes>
+    </div>
   );
 }
 
@@ -31,7 +31,7 @@ function Login({ onLoginSuccess }) {
     // Simulate a successful login
     if (onLoginSuccess) {
       onLoginSuccess();
-      navigate('/adventure');
+      navigate('/welcome');  // Navigate to Welcome page after login
     }
   };
 
