@@ -62,7 +62,7 @@ const Welcome = () => {
       })
       .catch((error) => {
         setLoading(false);
-        alert('❌ Failed to connect to the backend.');
+        // alert('❌ Failed to connect to the backend.');
         console.error(error);
       });
   };
